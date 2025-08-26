@@ -1,39 +1,45 @@
 name: Update Articles
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # manual trigger
   schedule:
-    - cron: '0 * * * *'  # every hour
+    - cron: '0 * * * *'  # every hour at minute 0
 
 jobs:
   update-articles:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install feedparser textblob nltk
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install feedparser textblob nltk
 
-      - name: Download NLTK punkt
-        run: python -m nltk.downloader punkt
+    - name: Download NLTK punkt
+      run: python -m nltk.downloader punkt
 
-      - name: Run scraper
-        run: python ToughNews.py
+    - name: Run ToughNews scraper
+      run: python ToughNews.py
 
-      - name: Commit & push updates
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add articles.json archive.json || echo "Nothing to add"
-          git commit -m "Update articles" --allow-empty || echo "No changes to commit"
-          # Use the token in the remote URL
+    - name: Commit & push updates
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+
+        git add articles.json archive.json || echo "Nothing to add"
+        
+        # Commit only if there are changes
+        if ! git diff --cached --quiet; then
+          git commit -m "Update curated articles"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        else
+          echo "No changes to commit"
+        fi
