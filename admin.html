@@ -50,7 +50,7 @@
       if (!token) return alert("No token entered.");
 
       const content = btoa(JSON.stringify(articles, null, 2)); // base64
-      const repo = "YOUR_USERNAME/YOUR_REPO"; // change this
+      const repo = "holyfather5000/ToughNews"; // change this
       const path = "articles.json"; // update if different
 
       const sha = await getSha(token, repo, path);
@@ -62,7 +62,7 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: "Update curated articles via admin.html",
+          message: "Update articles via admin.html",
           content: content,
           sha: sha
         })
