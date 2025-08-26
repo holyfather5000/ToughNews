@@ -2,6 +2,7 @@ import feedparser
 from textblob import TextBlob
 import time
 import json
+import os
 from datetime import datetime
 
 # -----------------------
@@ -26,25 +27,24 @@ rss_feeds = {
 odd_feeds = {"Odd News", "HuffPost Weird"}
 
 bad_keywords = [
-    "earthquake", "war", "killed", "crash", "explosion", "riot", "terror",
-    "bomb", "injury", "injuries", "injured", "fatal", "fatality", "emergency",
-    "deadly", "attack", "violence", "warfare", "abduction", "assault", "homicide",
-    "catastrophe", "evacuation", "public harm", "misinformation", "rigging",
-    "forgery", "bribery", "scam", "collision", "oil company", "oil spill",
-    "death toll", "deaths", "police clash", "fatalities", "hostage",
-    "drought", "cyclone", "famine", "arson", "assassination", "crimes",
-    "poison", "tragic", "tragedy", "explosions", "earthquakes", "shootings",
-    "have died", "has died", "been killed", "deceased", "murder", "crisis",
-    "disaster", "pandemic", "starvation", "disease", "outbreak", "terrorism",
-    "hurricane", "tornado", "felony", "fire", "dictator", "scandal",
-    "corruption", "pollution", "poverty", "fraud", "human trafficking", "racism",
-    "unemployment", "suicide", "North Korea",
+    "earthquake","war","killed","crash","explosion","riot","terror","bomb",
+    "injury","injuries","injured","fatal","fatality","emergency","deadly",
+    "attack","violence","warfare","abduction","assault","homicide","catastrophe",
+    "evacuation","public harm","misinformation","rigging","forgery","bribery",
+    "scam","collision","oil company","oil spill","death toll","deaths",
+    "police clash","fatalities","hostage","drought","cyclone","famine","arson",
+    "assassination","crimes","poison","tragic","tragedy","explosions",
+    "earthquakes","shootings","have died","has died","been killed","deceased",
+    "murder","crisis","disaster","pandemic","starvation","disease","outbreak",
+    "terrorism","hurricane","tornado","felony","fire","dictator","scandal",
+    "corruption","pollution","poverty","fraud","human trafficking","racism",
+    "unemployment","suicide","North Korea",
 ]
 
 exclude_keywords = [
-    "film", "movie", "review", "trailer", "episode", "series",
-    "plot", "music", "concert", "festival", "art", "exhibition",
-    "author", "fiction"
+    "film","movie","review","trailer","episode","series",
+    "plot","music","concert","festival","art","exhibition",
+    "author","fiction"
 ]
 
 ARTICLES_FILE = "articles.json"
@@ -77,12 +77,27 @@ def get_image(entry):
             return match.group(1)
     return None
 
-def save_articles(final_articles):
-    # save articles.json for admin
-    with open(ARTICLES_FILE, "w") as f:
-        json.dump(final_articles, f, indent=2)
+def load_existing_articles():
+    if os.path.exists(ARTICLES_FILE):
+        try:
+            with open(ARTICLES_FILE, "r") as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            return []
+    return []
 
-    # append to archive
+def save_articles(final_articles):
+    # Merge with existing so admin-approved ones aren’t lost
+    existing = load_existing_articles()
+    existing_titles = {a["title"] for a in existing}
+
+    merged = existing + [a for a in final_articles if a["title"] not in existing_titles]
+
+    # save merged list
+    with open(ARTICLES_FILE, "w") as f:
+        json.dump(merged, f, indent=2)
+
+    # append snapshot to archive
     try:
         with open(ARCHIVE_FILE, "r") as f:
             archive = json.load(f)
@@ -90,10 +105,12 @@ def save_articles(final_articles):
         archive = []
 
     timestamp = datetime.now().isoformat()
-    archive.append({"timestamp": timestamp, "articles": final_articles})
+    archive.append({"timestamp": timestamp, "articles": merged})
 
     with open(ARCHIVE_FILE, "w") as f:
         json.dump(archive, f, indent=2)
+
+    print(f"Saved {len(merged)} merged articles to {ARTICLES_FILE} and archived snapshot in {ARCHIVE_FILE}.")
 
 # -----------------------
 # Main scraping routine
@@ -116,7 +133,6 @@ def scrape_news():
             link = entry.get("link","")
             image_url = get_image(entry)
             title_lower = title.lower()
-            polarity = TextBlob(title).sentiment.polarity
 
             if source_name in odd_feeds:
                 if any(word in title_lower for word in bad_keywords):
@@ -166,18 +182,14 @@ def scrape_news():
                 if not any(a["title"]==title for a in final_articles):
                     final_articles.append({"source":source_name,"title":title,"link":link,"image":image_url,"shown":True})
 
-    # Step 4: Sort final articles by newest published date (if available)
+    # Step 4: Sort scraped batch by recency
     final_articles_sorted = sorted(
         final_articles,
         key=lambda x: x.get('published_parsed', time.gmtime(0)) if 'published_parsed' in x else time.gmtime(0),
         reverse=True
-    )
-
-    # Step 5: Take exactly 20
-    final_articles_sorted = final_articles_sorted[:20]
+    )[:20]
 
     save_articles(final_articles_sorted)
-    print(f"Saved {len(final_articles_sorted)} articles to {ARTICLES_FILE} and archived in {ARCHIVE_FILE}.")
 
 if __name__ == "__main__":
     scrape_news()
