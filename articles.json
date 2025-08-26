@@ -4,7 +4,8 @@
     "link": "https://newslink.com",
     "source": "BBC News",
     "image": "https://imageurl.com",
-    "shown": true
+    "shown": true,
+    "approved": true
   },
   {
     "title": "2nd News Headline",
