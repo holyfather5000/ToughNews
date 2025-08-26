@@ -11,20 +11,23 @@
       padding: 20px; 
     }
     h1 { text-align: center; margin-bottom: 20px; }
-    
+
     /* 2-column layout */
     .container {
       display: flex;
       gap: 20px;
       align-items: flex-start;
     }
+
     #articles {
       flex: 1; /* left column takes most space */
     }
+
     .sidebar {
       width: 200px; /* right column fixed width */
       position: sticky;
-      top: 20px; /* sticks 20px from top */
+      top: 50%;
+      transform: translateY(-50%); /* vertical middle */
       height: fit-content;
     }
 
@@ -50,6 +53,7 @@
       .sidebar {
         width: 100%;
         position: static;
+        transform: none;
       }
     }
   </style>
@@ -85,15 +89,15 @@
           <h3>${article.title}</h3>
           <p><a href="${article.link}" target="_blank">View</a></p>
           <label>
-            <input type="checkbox" ${article.shown ? "checked" : ""} onchange="toggleShown(${idx})"> Show on site
+            <input type="checkbox" ${article.shown ? "checked" : ""} onchange="toggleShown(${idx}, this.checked)"> Show on site
           </label>
         `;
         container.appendChild(div);
       });
     }
 
-    function toggleShown(idx) {
-      articles[idx].shown = !articles[idx].shown;
+    function toggleShown(idx, checked) {
+      articles[idx].shown = checked; // directly set based on checkbox
     }
 
     async function saveChanges() {
