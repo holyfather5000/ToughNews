@@ -46,12 +46,17 @@
     }
 
     async function saveChanges() {
-      const token = prompt("Enter your GitHub Personal Access Token (with repo scope):");
-      if (!token) return alert("No token entered.");
+      let token = localStorage.getItem("github_token");
 
-      const content = btoa(JSON.stringify(articles, null, 2)); // base64
-      const repo = "holyfather5000/ToughNews"; // change this
-      const path = "articles.json"; // update if different
+      if (!token) {
+        token = prompt("Enter your GitHub Personal Access Token (with repo scope):");
+        if (!token) return alert("No token entered.");
+        localStorage.setItem("github_token", token); // save for future use
+      }
+
+      const content = btoa(JSON.stringify(articles, null, 2)); // base64 encode
+      const repo = "holyfather5000/ToughNews"; 
+      const path = "articles.json"; 
 
       const sha = await getSha(token, repo, path);
 
