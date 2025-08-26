@@ -5,16 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tough Admin</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { text-align: center; }
-    .article { border: 1px solid #ccc; margin: 10px; padding: 10px; border-radius: 5px; }
-    button { padding: 5px 10px; margin-top: 10px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      padding: 20px; 
+    }
+    h1 { text-align: center; margin-bottom: 20px; }
+    
+    /* 2-column layout */
+    .container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    #articles {
+      flex: 1; /* left column takes most space */
+    }
+    .sidebar {
+      width: 200px; /* right column fixed width */
+      position: sticky;
+      top: 20px; /* sticks 20px from top */
+      height: fit-content;
+    }
+
+    .article { 
+      border: 1px solid #ccc; 
+      margin-bottom: 10px; 
+      padding: 10px; 
+      border-radius: 5px; 
+    }
+
+    button { 
+      padding: 10px 20px; 
+      display: block; 
+      width: 100%;
+      margin-top: 0;
+    }
+
+    /* Responsive for mobile */
+    @media(max-width: 600px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        position: static;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Tough Admin - Articles</h1>
-  <div id="articles">Loading...</div>
-  <button onclick="saveChanges()">Save Changes</button>
+
+  <div class="container">
+    <div id="articles">Loading...</div>
+
+    <div class="sidebar">
+      <button onclick="saveChanges()">Save Changes</button>
+    </div>
+  </div>
 
   <script>
     const repo = "holyfather5000/ToughNews"; // your repo
