@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Tough News Headline",
+    "link": "https://newslink.com",
+    "source": "BBC News",
+    "image": "https://imageurl.com",
+    "shown": true
+  },
+  {
+    "title": "2nd News Headline",
+    "link": "https://newslink.com",
+    "source": "Baddy News",
+    "image": "https://imageurl.com",
+    "shown": true
+  }
+]
