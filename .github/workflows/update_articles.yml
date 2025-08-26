@@ -31,8 +31,14 @@ jobs:
 
       - name: Commit & push updates
         run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add articles.json archive.json
-          git diff --cached --quiet || git commit -m "Update articles"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "Update articles"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
