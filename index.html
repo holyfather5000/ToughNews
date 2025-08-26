@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tough News</title>
   <style>
@@ -32,26 +32,27 @@
   <script>
     async function loadArticles() {
       try {
-        const response = await fetch("articles.json?nocache=" + new Date().getTime());
+        const response = await fetch("articles.json?nocache=" + Date.now());
         const allArticles = await response.json();
         const container = document.getElementById("articles");
         container.innerHTML = "";
 
-        // Flatten snapshots if present
         let approvedArticles = [];
+
+        // Handle snapshots or flat format
         if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
           allArticles.forEach(snapshot => {
             snapshot.articles.forEach(article => {
-              if (article.approved) {
+              if (article.approved === true) {
                 approvedArticles.push({
                   ...article,
-                  timestamp: snapshot.timestamp
+                  timestamp: snapshot.timestamp || null
                 });
               }
             });
           });
-        } else {
-          approvedArticles = allArticles.filter(a => a.approved);
+        } else if (Array.isArray(allArticles)) {
+          approvedArticles = allArticles.filter(a => a.approved === true);
         }
 
         if (approvedArticles.length === 0) {
@@ -59,23 +60,28 @@
           return;
         }
 
-        // Sort newest first
-        approvedArticles.sort((a,b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+        // Sort by timestamp if present
+        approvedArticles.sort((a, b) => {
+          const t1 = a.timestamp ? new Date(a.timestamp).getTime() : 0;
+          const t2 = b.timestamp ? new Date(b.timestamp).getTime() : 0;
+          return t2 - t1;
+        });
 
+        // Render articles
         approvedArticles.forEach(article => {
           const div = document.createElement("div");
           div.className = "article";
           div.innerHTML = `
-            <div class="title">${article.title}</div>
+            <div class="title">${article.title || "Untitled"}</div>
             ${article.image ? `<img src="${article.image}" alt="Article image">` : ""}
-            <a class="link" href="${article.link}" target="_blank">Read Article</a>
+            ${article.link ? `<a class="link" href="${article.link}" target="_blank">Read Article</a>` : ""}
             ${article.timestamp ? `<div class="timestamp">Approved: ${new Date(article.timestamp).toLocaleString()}</div>` : ""}
           `;
           container.appendChild(div);
         });
 
-      } catch(err) {
-        console.error(err);
+      } catch (err) {
+        console.error("Error loading articles:", err);
         document.getElementById("articles").innerHTML = "<p>Error loading articles.</p>";
       }
     }
