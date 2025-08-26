@@ -5,11 +5,19 @@ import feedparser
 
 ARTICLES_FILE = "articles.json"
 
-# List of RSS feeds
 FEEDS = [
-    "https://rss.cbc.ca/lineup/topstories.xml",
-    "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "https://www.reutersagency.com/feed/?best-topics=world&post_type=best",
+    "https://feeds.bbci.co.uk/news/rss.xml",
+    "https://feedx.net/rss/ap.xml",
+    "https://www.euronews.com/rss",
+    "https://time.com/feed/",
+    "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+    "https://www.cbc.ca/webfeed/rss/rss-topstories",
+    "https://globalnews.ca/feed/",
+    "https://www.aljazeera.com/xml/rss/all.xml",
+    "https://www.npr.org/rss/rss.php?id=1001",
+    "https://reliefweb.int/updates/rss.xml",
+    "https://www.odditycentral.com/feed",
+    "https://www.huffpost.com/section/weird-news/feed",
 ]
 
 def load_existing_articles():
@@ -29,32 +37,38 @@ def fetch_new_articles():
     articles = []
     for feed_url in FEEDS:
         d = feedparser.parse(feed_url)
-        for entry in d.entries[:10]:  # grab top 10 per feed
+        for entry in d.entries[:20]:  # get top 20 instead of 10
             article = {
                 "title": entry.get("title", "No Title"),
                 "url": entry.get("link", ""),
-                "date": entry.get("published", datetime.utcnow().isoformat()),
-                "shown": False  # default: hidden
+                "date": (
+                    entry.get("published")
+                    or entry.get("updated")
+                    or datetime.utcnow().isoformat()
+                ),
+                "shown": False,  # default hidden
             }
             articles.append(article)
     return articles
 
 def main():
     existing = load_existing_articles()
-    seen = {a["url"] for a in existing if "url" in a}
-    merged = existing[:]
+    seen_urls = {a["url"] for a in existing if "url" in a}
 
     new_articles = fetch_new_articles()
     added_count = 0
 
     for article in new_articles:
-        if article["url"] not in seen:
-            merged.append(article)
-            seen.add(article["url"])
+        if article["url"] and article["url"] not in seen_urls:
+            existing.append(article)
+            seen_urls.add(article["url"])
             added_count += 1
 
-    save_articles(merged)
-    print(f"✅ Added {added_count} new articles. Total now: {len(merged)}")
+    # sort newest first
+    existing.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+    save_articles(existing)
+    print(f"✅ Added {added_count} new articles. Total now: {len(existing)}")
 
 if __name__ == "__main__":
     main()
