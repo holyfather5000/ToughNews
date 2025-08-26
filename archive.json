@@ -1013,5 +1013,150 @@
         "shown": true
       }
     ]
+  },
+  {
+    "timestamp": "2025-08-26T12:40:21.001945",
+    "articles": [
+      {
+        "source": "BBC News",
+        "title": "I'm not sure I saw a football match - Slot on Newcastle gameplan",
+        "link": "https://www.bbc.com/sport/football/articles/cjeyjwq9kkno?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "'When do we stop being immigrants?': Northern Ireland families ask after riots",
+        "link": "https://www.bbc.com/news/articles/c9qydg327n2o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Taiwan is preparing for a Chinese attack but its people don't think war is coming soon",
+        "link": "https://www.bbc.com/news/articles/cp94v42gmg9o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Less serious violence at Notting Hill Carnival this year, say police",
+        "link": "https://www.bbc.com/news/articles/cpdj7lnx40xo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Is Donald Trump losing his Latino base?",
+        "link": "https://www.bbc.co.uk/sounds/play/w3ct7t5t?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Protesters in Israel demand release of hostages as Gaza strikes kill 16, hospitals say",
+        "link": "https://apnews.com/article/israel-palestinians-hamas-gaza-war-08-26-2025-0f1be1b4e3231e0cbec54ce837cc6af9",
+        "image": "https://dims.apnews.com/dims4/default/4e2a443/2147483647/strip/true/crop/5428x3053+0+283/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F68%2F54%2Fd7416eb3ffa0036e77cbff939584%2F1d6e562a18a442f08ba4f144848bb75f",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Mass evacuations in eastern Pakistan as India releases water from swollen rivers",
+        "link": "https://apnews.com/article/pakistan-mass-evacuations-india-released-water-rains-4201f92cd951b36a2b9d9b534df1cd82",
+        "image": "https://dims.apnews.com/dims4/default/1e6bd5d/2147483647/strip/true/crop/2455x1381+0+128/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F95%2Fac%2Fdae80c1b6742bd0e0314dd539af0%2F60558353fa284237a24bc1327a5f0d5a",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Australia accuses Iran of organizing antisemitic attacks and expels ambassador",
+        "link": "https://apnews.com/article/australia-iran-antisemitism-attacks-fad2dc76125807a643bfe14cae33d2c8",
+        "image": "https://dims.apnews.com/dims4/default/cfcc720/2147483647/strip/true/crop/5823x3275+0+303/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Fa7%2Fd96ba7a38a21e7395b8999f8883f%2Fdad3d2a0067942e1a8b31a1c7ebee1c3",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Trump fires Fed Governor Lisa Cook, opening new front in fight for control over central bank",
+        "link": "https://apnews.com/article/federal-reserve-lisa-cook-trump-6fca3d2fbb54ba204cc91398e6a7b020",
+        "image": "https://dims.apnews.com/dims4/default/9e4ca1a/2147483647/strip/true/crop/5693x3202+0+296/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F5b%2Faa%2F5aa90a355ed95c3ff6ca070ccd37%2Fbf09d936711b40d49bd68f0b484543b6",
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Newsom Promotes His \u2018Real Patriot\u2019 Alternative to MAGA Merchandise as Trump-Trolling Escalates",
+        "link": "https://time.com/7312256/gavin-newsom-merchandise-trump-maga-trolling-feud/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Britain Is Getting the Immigration Debate All Wrong",
+        "link": "https://time.com/7312223/uk-immigration-debate-farage/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Who Is Lisa Cook and Why Is Trump Trying to Fire Her From the Fed?",
+        "link": "https://time.com/7312213/lisa-cook-trump-fire-federal-reserve-governor-mortgage-fraud-powell-interest-rates/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "\u2018Maybe We Like a Dictator\u2019: Trump Suggests Many Americans Would Prefer Autocracy",
+        "link": "https://time.com/7312196/trump-americans-maybe-we-like-a-dictator/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Nearly 200 FEMA Employees Warn the Trump Administration Is Eroding Disaster Preparedness",
+        "link": "https://time.com/7312150/fema-trump-disaster-response-employees-katrina/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Mississippi Declares a Public Health Emergency Over Infant Deaths",
+        "link": "https://time.com/7312122/mississippi-infant-mortality-public-health-emergency/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Australia Says Iran Was Behind Antisemitic Arson Attacks on Its Soil",
+        "link": "https://www.nytimes.com/2025/08/26/world/australia/australia-iran-antisemitic-attacks.html",
+        "image": "https://static01.nyt.com/images/2025/08/26/multimedia/26int-oz-iran-zctb/26int-oz-iran-zctb-mediumSquareAt3X.jpg",
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Israel Faces Growing Pressure Over Hostages and Gaza Offensive",
+        "link": "https://www.nytimes.com/2025/08/26/world/middleeast/israel-netanyahu-gaza-protests.html",
+        "image": "https://static01.nyt.com/images/2025/08/26/multimedia/26int-israel-government-bpwf/26int-israel-government-bpwf-mediumSquareAt3X.jpg",
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Some Programs for Black Students Become \u2018Illegal D.E.I.\u2019 Under Trump",
+        "link": "https://www.nytimes.com/2025/08/26/us/black-student-achievement-diversity-trump.html",
+        "image": "https://static01.nyt.com/images/2025/08/22/multimedia/00nat-dei-wzjh/00nat-dei-wzjh-mediumSquareAt3X.jpg",
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "\u2018It Was Unlike Anything I\u2019d Ever Seen:\u2019 Hurricane Katrina, 20 Years Later",
+        "link": "https://www.nytimes.com/2025/08/26/opinion/hurricane-katrina-photos.html",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "What to Know About the Fed\u2019s Lisa Cook and Mortgage Fraud Allegations",
+        "link": "https://www.nytimes.com/2025/08/22/us/politics/trump-lisa-cook-fed-mortgage-fraud.html",
+        "image": "https://static01.nyt.com/images/2025/08/22/multimedia/22dc-cook-mortgage-gzvm/22dc-cook-mortgage-gzvm-mediumSquareAt3X.jpg",
+        "shown": true
+      }
+    ]
   }
 ]
