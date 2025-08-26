@@ -37,14 +37,14 @@
         const container = document.getElementById("articles");
         container.innerHTML = "";
 
-        let approvedArticles = [];
+        let shownArticles = [];
 
         // Handle snapshots or flat format
         if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
           allArticles.forEach(snapshot => {
             snapshot.articles.forEach(article => {
-              if (article.shown === true) { // use shown instead of approved
-                approvedArticles.push({
+              if (article.shown === true) { // <-- use shown
+                shownArticles.push({
                   ...article,
                   timestamp: snapshot.timestamp || null
                 });
@@ -52,30 +52,30 @@
             });
           });
         } else if (Array.isArray(allArticles)) {
-          approvedArticles = allArticles.filter(a => a.shown === true);
+          shownArticles = allArticles.filter(a => a.shown === true); // <-- use shown
         }
 
-        if (approvedArticles.length === 0) {
-          container.innerHTML = "<p>No articles approved yet.</p>";
+        if (shownArticles.length === 0) {
+          container.innerHTML = "<p>No articles to display.</p>";
           return;
         }
 
         // Sort by timestamp if present
-        approvedArticles.sort((a, b) => {
+        shownArticles.sort((a, b) => {
           const t1 = a.timestamp ? new Date(a.timestamp).getTime() : 0;
           const t2 = b.timestamp ? new Date(b.timestamp).getTime() : 0;
           return t2 - t1;
         });
 
         // Render articles
-        approvedArticles.forEach(article => {
+        shownArticles.forEach(article => {
           const div = document.createElement("div");
           div.className = "article";
           div.innerHTML = `
             <div class="title">${article.title || "Untitled"}</div>
             ${article.image ? `<img src="${article.image}" alt="Article image">` : ""}
             ${article.link ? `<a class="link" href="${article.link}" target="_blank">Read Article</a>` : ""}
-            ${article.timestamp ? `<div class="timestamp">Snapshot saved: ${new Date(article.timestamp).toLocaleString()}</div>` : ""}
+            ${article.timestamp ? `<div class="timestamp">Added: ${new Date(article.timestamp).toLocaleString()}</div>` : ""}
           `;
           container.appendChild(div);
         });
