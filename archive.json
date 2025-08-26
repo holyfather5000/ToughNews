@@ -868,5 +868,150 @@
         "shown": true
       }
     ]
+  },
+  {
+    "timestamp": "2025-08-26T11:16:53.873441",
+    "articles": [
+      {
+        "source": "BBC News",
+        "title": "I'm not sure I saw a football match - Slot on Newcastle gameplan",
+        "link": "https://www.bbc.com/sport/football/articles/cjeyjwq9kkno?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Taiwan is preparing for a Chinese attack but its people don't think war is coming soon",
+        "link": "https://www.bbc.com/news/articles/cp94v42gmg9o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "'Chelsea were angry to lose him' - who is Liverpool's Ngumoha?",
+        "link": "https://www.bbc.com/sport/football/articles/cwy5jw801q2o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Less serious violence at Notting Hill Carnival this year, say police",
+        "link": "https://www.bbc.com/news/articles/cpdj7lnx40xo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Three dead and one injured as helicopter crashes during flying lesson",
+        "link": "https://www.bbc.com/news/articles/c87e22ryerlo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Is Donald Trump losing his Latino base?",
+        "link": "https://www.bbc.co.uk/sounds/play/w3ct7t5t?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Mass evacuations in eastern Pakistan as India releases water from swollen rivers",
+        "link": "https://apnews.com/article/pakistan-mass-evacuations-india-released-water-rains-4201f92cd951b36a2b9d9b534df1cd82",
+        "image": "https://dims.apnews.com/dims4/default/1e6bd5d/2147483647/strip/true/crop/2455x1381+0+128/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F95%2Fac%2Fdae80c1b6742bd0e0314dd539af0%2F60558353fa284237a24bc1327a5f0d5a",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Australia accuses Iran of organizing antisemitic attacks and expels ambassador",
+        "link": "https://apnews.com/article/australia-iran-antisemitism-attacks-fad2dc76125807a643bfe14cae33d2c8",
+        "image": "https://dims.apnews.com/dims4/default/cfcc720/2147483647/strip/true/crop/5823x3275+0+303/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Fa7%2Fd96ba7a38a21e7395b8999f8883f%2Fdad3d2a0067942e1a8b31a1c7ebee1c3",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Trump fires Fed Governor Lisa Cook, opening new front in fight for control over central bank",
+        "link": "https://apnews.com/article/federal-reserve-lisa-cook-trump-6fca3d2fbb54ba204cc91398e6a7b020",
+        "image": "https://dims.apnews.com/dims4/default/9e4ca1a/2147483647/strip/true/crop/5693x3202+0+296/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F5b%2Faa%2F5aa90a355ed95c3ff6ca070ccd37%2Fbf09d936711b40d49bd68f0b484543b6",
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Leading AI chatbots, including ChatGPT, struggle to respond to all queries about suicide, study says",
+        "link": "https://www.euronews.com/next/2025/08/26/leading-ai-chatbots-including-chatgpt-struggle-to-respond-to-all-queries-about-suicide-stu",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "France detains man after bodies in River Seine raise fears of 'homophobic' murders",
+        "link": "https://www.euronews.com/2025/08/26/france-detains-man-after-bodies-in-river-seine-raise-fears-of-homophobic-murders",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Heatwaves may be speeding up your biological ageing, study warns",
+        "link": "https://www.euronews.com/health/2025/08/26/heatwaves-may-be-speeding-up-your-biological-ageing-study-warns",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Church reduced to ashes as fires sweep through San Vicente in Spain",
+        "link": "https://www.euronews.com/video/2025/08/26/church-reduced-to-ashes-as-fires-sweep-through-san-vicente-in-spain",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Australia accuses Iran of organising antisemitic attacks and expels ambassador",
+        "link": "https://www.euronews.com/2025/08/26/australia-accuses-iran-of-organising-antisemitic-attacks-and-expels-ambassador",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Trump removes Fed Governor Lisa Cook over mortgage fraud dispute",
+        "link": "https://www.euronews.com/business/2025/08/26/trump-says-hell-fire-fed-reserve-governor-lisa-cook-over-mortgage-loan-allegations",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Unfair competition? Worries about European road safety after EU-US trade agreement",
+        "link": "https://www.euronews.com/my-europe/2025/08/25/unfair-competition-worries-about-european-road-safety-after-eu-us-trade-agreement",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Weakening Russia's war machine: Why Kyiv is targeting Moscow's energy sector",
+        "link": "https://www.euronews.com/2025/08/25/weakening-the-russian-war-machine-why-kyiv-is-targeting-moscows-energy-sector",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "SpaceX Starship rocket launch delayed again due to bad weather",
+        "link": "https://www.euronews.com/next/2025/08/25/spacex-to-launch-starship-rocket-in-test-for-elon-musks-moon-and-mars-ambitions",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "WATCH: Hundreds join demonstration in Kenyan capital over war in Gaza",
+        "link": "https://www.euronews.com/video/2025/08/25/watch-hundreds-join-demonstration-in-kenyan-capital-over-war-in-gaza",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Euronews",
+        "title": "Hungary and Slovakia in spat with Ukraine over bombed Druzhba oil pipeline",
+        "link": "https://www.euronews.com/my-europe/2025/08/25/hungary-and-slovakia-in-spat-with-ukraine-over-bombed-druzhba-oil-pipeline",
+        "image": null,
+        "shown": true
+      }
+    ]
   }
 ]
