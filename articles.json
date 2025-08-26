@@ -1,8 +1,8 @@
 [
   {
     "source": "BBC News",
-    "title": "Australia accuses Iran of directing antisemitic attacks on cafe and synagogue",
-    "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
+    "title": "I'm not sure I saw a football match - Slot on Newcastle gameplan",
+    "link": "https://www.bbc.com/sport/football/articles/cjeyjwq9kkno?at_medium=RSS&at_campaign=rss",
     "image": null,
     "shown": true
   },
@@ -57,6 +57,13 @@
   },
   {
     "source": "AP News",
+    "title": "Mass evacuations in eastern Pakistan as India releases water from swollen rivers",
+    "link": "https://apnews.com/article/pakistan-mass-evacuations-india-released-water-rains-4201f92cd951b36a2b9d9b534df1cd82",
+    "image": "https://dims.apnews.com/dims4/default/1e6bd5d/2147483647/strip/true/crop/2455x1381+0+128/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F95%2Fac%2Fdae80c1b6742bd0e0314dd539af0%2F60558353fa284237a24bc1327a5f0d5a",
+    "shown": true
+  },
+  {
+    "source": "AP News",
     "title": "Australia accuses Iran of organizing antisemitic attacks and expels ambassador",
     "link": "https://apnews.com/article/australia-iran-antisemitism-attacks-fad2dc76125807a643bfe14cae33d2c8",
     "image": "https://dims.apnews.com/dims4/default/cfcc720/2147483647/strip/true/crop/5823x3275+0+303/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Fa7%2Fd96ba7a38a21e7395b8999f8883f%2Fdad3d2a0067942e1a8b31a1c7ebee1c3",
@@ -92,6 +99,13 @@
   },
   {
     "source": "Euronews",
+    "title": "Church reduced to ashes as fires sweep through San Vicente in Spain",
+    "link": "https://www.euronews.com/video/2025/08/26/church-reduced-to-ashes-as-fires-sweep-through-san-vicente-in-spain",
+    "image": null,
+    "shown": true
+  },
+  {
+    "source": "Euronews",
     "title": "Australia accuses Iran of organising antisemitic attacks and expels ambassador",
     "link": "https://www.euronews.com/2025/08/26/australia-accuses-iran-of-organising-antisemitic-attacks-and-expels-ambassador",
     "image": null,
@@ -122,20 +136,6 @@
     "source": "Euronews",
     "title": "SpaceX Starship rocket launch delayed again due to bad weather",
     "link": "https://www.euronews.com/next/2025/08/25/spacex-to-launch-starship-rocket-in-test-for-elon-musks-moon-and-mars-ambitions",
-    "image": null,
-    "shown": true
-  },
-  {
-    "source": "Euronews",
-    "title": "WATCH: Hundreds join demonstration in Kenyan capital over war in Gaza",
-    "link": "https://www.euronews.com/video/2025/08/25/watch-hundreds-join-demonstration-in-kenyan-capital-over-war-in-gaza",
-    "image": null,
-    "shown": true
-  },
-  {
-    "source": "Euronews",
-    "title": "Hungary and Slovakia in spat with Ukraine over bombed Druzhba oil pipeline",
-    "link": "https://www.euronews.com/my-europe/2025/08/25/hungary-and-slovakia-in-spat-with-ukraine-over-bombed-druzhba-oil-pipeline",
     "image": null,
     "shown": true
   }
