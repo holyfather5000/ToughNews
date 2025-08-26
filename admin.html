@@ -5,66 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tough Admin</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 20px; 
-    }
-    h1 { text-align: center; margin-bottom: 20px; }
-
-    /* 2-column layout */
-    .container {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    #articles {
-      flex: 1; /* left column takes most space */
-    }
-
-    .sidebar {
-      width: 200px; /* right column fixed width */
-      position: sticky;
-      top: 50%;
-      transform: translateY(-50%); /* vertical middle */
-      height: fit-content;
-    }
-
-    .article { 
-      border: 1px solid #ccc; 
-      margin-bottom: 10px; 
-      padding: 10px; 
-      border-radius: 5px; 
-    }
-
-    button { 
-      padding: 10px 20px; 
-      display: block; 
-      width: 100%;
-      margin-top: 0;
-    }
-
-    /* Responsive for mobile */
-    @media(max-width: 600px) {
-      .container {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        position: static;
-        transform: none;
-      }
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    h1 { text-align: center; padding: 20px 0; }
+    .container { display: flex; min-height: 100vh; }
+    #articles { flex: 3; padding: 20px; overflow-y: auto; }
+    .article { border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+    #saveContainer { flex: 1; display: flex; align-items: center; justify-content: center; background: #f7f7f7; padding: 20px; }
+    button { padding: 10px 20px; font-size: 16px; }
   </style>
 </head>
 <body>
   <h1>Tough Admin - Articles</h1>
-
   <div class="container">
     <div id="articles">Loading...</div>
-
-    <div class="sidebar">
+    <div id="saveContainer">
       <button onclick="saveChanges()">Save Changes</button>
     </div>
   </div>
@@ -72,32 +26,38 @@
   <script>
     const repo = "holyfather5000/ToughNews"; // your repo
     const path = "articles.json";
-
     let articles = [];
     let token = localStorage.getItem("githubPAT") || "";
 
     async function loadArticles() {
-      const response = await fetch(path + "?nocache=" + new Date().getTime());
-      articles = await response.json();
-      const container = document.getElementById("articles");
-      container.innerHTML = "";
+      try {
+        const response = await fetch(path + "?nocache=" + Date.now());
+        articles = await response.json();
+        const container = document.getElementById("articles");
+        container.innerHTML = "";
 
-      articles.forEach((article, idx) => {
-        const div = document.createElement("div");
-        div.className = "article";
-        div.innerHTML = `
-          <h3>${article.title}</h3>
-          <p><a href="${article.link}" target="_blank">View</a></p>
-          <label>
-            <input type="checkbox" ${article.shown ? "checked" : ""} onchange="toggleShown(${idx}, this.checked)"> Show on site
-          </label>
-        `;
-        container.appendChild(div);
-      });
-    }
+        articles.forEach((article, idx) => {
+          const div = document.createElement("div");
+          div.className = "article";
+          div.innerHTML = `
+            <h3>${article.title}</h3>
+            <p><a href="${article.link}" target="_blank">View</a></p>
+            <label>
+              <input type="checkbox" id="check${idx}" ${article.shown ? "checked" : ""}> Show on site
+            </label>
+          `;
+          container.appendChild(div);
 
-    function toggleShown(idx, checked) {
-      articles[idx].shown = checked; // directly set based on checkbox
+          // Initialize checkbox
+          const checkbox = document.getElementById(`check${idx}`);
+          checkbox.addEventListener("change", () => {
+            articles[idx].shown = checkbox.checked;
+          });
+        });
+      } catch (err) {
+        console.error("Error loading articles:", err);
+        document.getElementById("articles").innerHTML = "<p>Error loading articles.</p>";
+      }
     }
 
     async function saveChanges() {
@@ -107,7 +67,7 @@
         localStorage.setItem("githubPAT", token);
       }
 
-      const content = btoa(JSON.stringify(articles, null, 2)); // base64
+      const content = btoa(JSON.stringify(articles, null, 2));
       const sha = await getSha();
 
       const response = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
