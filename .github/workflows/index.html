@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tough News</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; }
+    .article { border-bottom: 1px solid #ddd; padding: 10px 0; }
+    .article:last-child { border-bottom: none; }
+    .title { font-size: 18px; font-weight: bold; }
+    .link { color: #0073e6; text-decoration: none; }
+    .link:hover { text-decoration: underline; }
+    .timestamp { font-size: 12px; color: #555; }
+    nav { margin: 20px 0; text-align: center; }
+    nav a { margin: 0 10px; text-decoration: none; color: #333; }
+    img { max-width: 100%; height: auto; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h1>Tough News</h1>
+
+  <nav>
+    <a href="index.html">Home</a> | 
+    <a href="archive.html">Archive</a> |
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <div id="articles">Loading articles...</div>
+
+  <script>
+    async function loadArticles() {
+      try {
+        const response = await fetch("articles.json?nocache=" + new Date().getTime());
+        const allArticles = await response.json();
+        const container = document.getElementById("articles");
+        container.innerHTML = "";
+
+        // Flatten snapshots if present
+        let approvedArticles = [];
+        if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
+          allArticles.forEach(snapshot => {
+            snapshot.articles.forEach(article => {
+              if (article.approved) {
+                approvedArticles.push({
+                  ...article,
+                  timestamp: snapshot.timestamp
+                });
+              }
+            });
+          });
+        } else {
+          approvedArticles = allArticles.filter(a => a.approved);
+        }
+
+        if (approvedArticles.length === 0) {
+          container.innerHTML = "<p>No articles approved yet.</p>";
+          return;
+        }
+
+        // Sort newest first
+        approvedArticles.sort((a,b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+        approvedArticles.forEach(article => {
+          const div = document.createElement("div");
+          div.className = "article";
+          div.innerHTML = `
+            <div class="title">${article.title}</div>
+            ${article.image ? `<img src="${article.image}" alt="Article image">` : ""}
+            <a class="link" href="${article.link}" target="_blank">Read Article</a>
+            ${article.timestamp ? `<div class="timestamp">Approved: ${new Date(article.timestamp).toLocaleString()}</div>` : ""}
+          `;
+          container.appendChild(div);
+        });
+
+      } catch(err) {
+        console.error(err);
+        document.getElementById("articles").innerHTML = "<p>Error loading articles.</p>";
+      }
+    }
+
+    loadArticles();
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tough Archive</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1 { text-align: center; }
+    .article { border-bottom: 1px solid #ddd; padding: 10px 0; }
+    .article:last-child { border-bottom: none; }
+    .title { font-size: 18px; font-weight: bold; }
+    .link { color: #0073e6; text-decoration: none; }
+    .link:hover { text-decoration: underline; }
+    .timestamp { font-size: 12px; color: #555; }
+    nav { margin: 20px 0; text-align: center; }
+    nav a { margin: 0 10px; text-decoration: none; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Tough Articles Archive</h1>
+
+  <nav>
+    <a href="index.html">Home</a> | 
+    <a href="archive.html">Archive</a>
+  </nav>
+
+  <div id="articles">Loading...</div>
+
+  <script>
+    async function loadArchive() {
+      try {
+        const response = await fetch("articles.json?nocache=" + new Date().getTime());
+        const allArticles = await response.json();
+
+        const container = document.getElementById("articles");
+        container.innerHTML = "";
+
+        // If your archive is a history of snapshots, flatten them
+        let archived = [];
+        if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
+          // older archive format with snapshots
+          allArticles.forEach(snapshot => {
+            snapshot.articles.forEach(article => {
+              if (article.approved) {
+                archived.push({
+                  ...article,
+                  timestamp: snapshot.timestamp
+                });
+              }
+            });
+          });
+        } else {
+          // single latest file
+          archived = allArticles.filter(a => a.approved);
+        }
+
+        if (archived.length === 0) {
+          container.innerHTML = "<p>No archived articles yet.</p>";
+          return;
+        }
+
+        // Sort by timestamp (newest first)
+        archived.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+        archived.forEach(article => {
+          const div = document.createElement("div");
+          div.className = "article";
+          div.innerHTML = `
+            <div class="title">${article.title}</div>
+            <a class="link" href="${article.link}" target="_blank">Read Article</a>
+            ${article.timestamp ? `<div class="timestamp">Approved: ${new Date(article.timestamp).toLocaleString()}</div>` : ""}
+          `;
+          container.appendChild(div);
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("articles").innerHTML = "<p>Error loading archive.</p>";
+      }
+    }
+
+    loadArchive();
+  </script>
+</body>
+</html>
