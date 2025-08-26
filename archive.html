@@ -55,7 +55,7 @@
           dateHeader.textContent = "Snapshot: " + new Date(snapshot.timestamp).toLocaleString();
           container.appendChild(dateHeader);
 
-          let approved = snapshot.articles.filter(a => a.approved);
+          let approved = snapshot.articles.filter(a => a.shown);
           if (approved.length === 0) {
             const p = document.createElement("p");
             p.textContent = "No approved articles in this snapshot.";

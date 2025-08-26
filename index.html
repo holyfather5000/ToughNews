@@ -43,7 +43,7 @@
         if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
           allArticles.forEach(snapshot => {
             snapshot.articles.forEach(article => {
-              if (article.approved === true) {
+              if (article.shown === true) {
                 approvedArticles.push({
                   ...article,
                   timestamp: snapshot.timestamp || null
@@ -52,7 +52,7 @@
             });
           });
         } else if (Array.isArray(allArticles)) {
-          approvedArticles = allArticles.filter(a => a.approved === true);
+          approvedArticles = allArticles.filter(a => a.shown === true);
         }
 
         if (approvedArticles.length === 0) {
