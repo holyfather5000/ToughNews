@@ -143,5 +143,150 @@
         "shown": true
       }
     ]
+  },
+  {
+    "timestamp": "2025-08-26T06:29:02.595627",
+    "articles": [
+      {
+        "source": "BBC News",
+        "title": "Nigel Farage says illegal migration is a 'scourge'",
+        "link": "https://www.bbc.com/news/articles/c5yk4r5e514o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Australia blames Iran for antisemitic attacks in Sydney and Melbourne",
+        "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Lil Nas X pleads not guilty to four felony charges after LA arrest",
+        "link": "https://www.bbc.com/news/articles/cly4ey0nm7xo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "How Taiwan is preparing for Chinese attack with acting, fake blood and mock missile strikes",
+        "link": "https://www.bbc.com/news/articles/cp94v42gmg9o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "'Chelsea were angry to lose him' - who is Liverpool's Ngumoha?",
+        "link": "https://www.bbc.com/sport/football/articles/cwy5jw801q2o?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "'How will I pay workers?': Indian factories hit hard by Trump's 50% tariffs",
+        "link": "https://www.bbc.com/news/articles/c98lr56mznjo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Less serious violence at Notting Hill Carnival this year, say police",
+        "link": "https://www.bbc.com/news/articles/cpdj7lnx40xo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Three dead and one injured as helicopter crashes during flying lesson",
+        "link": "https://www.bbc.com/news/articles/c87e22ryerlo?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "BBC News",
+        "title": "Is Donald Trump losing his Latino base?",
+        "link": "https://www.bbc.co.uk/sounds/play/w3ct7t5t?at_medium=RSS&at_campaign=rss",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Trump fires Fed Governor Lisa Cook, opening new front in fight for control over central bank",
+        "link": "https://apnews.com/article/federal-reserve-lisa-cook-trump-6fca3d2fbb54ba204cc91398e6a7b020",
+        "image": "https://dims.apnews.com/dims4/default/9e4ca1a/2147483647/strip/true/crop/5693x3202+0+296/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F5b%2Faa%2F5aa90a355ed95c3ff6ca070ccd37%2Fbf09d936711b40d49bd68f0b484543b6",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Trump\u2019s initial warning to South Korea\u2019s Lee turns into warm welcome after flattery",
+        "link": "https://apnews.com/article/donald-trump-south-korea-trade-lee-jae-myung-f80efa062dcc1b2430bbe3f12d6d1b6e",
+        "image": "https://dims.apnews.com/dims4/default/0c173d7/2147483647/strip/true/crop/5641x3173+0+294/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F49%2F51%2F10ab9ddaa48d3788a71485c52661%2F3695cb89189b41a8ab731ec08aa0b4ef",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Lil Nas X charged with attacking police officers as he walked naked on Los Angeles street",
+        "link": "https://apnews.com/article/lil-nas-x-lapd-felony-charges-780ef8560cd075102257a5404f882b8f",
+        "image": "https://dims.apnews.com/dims4/default/4942e59/2147483647/strip/true/crop/3813x2145+0+199/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F1b%2Fbd%2F9ec771842b0639fb6220af6e5e17%2F3beb1bdd284b4ea4a28c90fda7a40640",
+        "shown": true
+      },
+      {
+        "source": "AP News",
+        "title": "Long-elusive Mexican drug lord Ismael \u2018El Mayo\u2019 Zambada pleads guilty in US",
+        "link": "https://apnews.com/article/mexican-sinaloa-cartel-leader-el-mayo-zambada-276e976380207177f8eb9e4373a49a6e",
+        "image": "https://dims.apnews.com/dims4/default/67259ce/2147483647/strip/true/crop/1944x1094+0+101/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F15%2F61%2F2423ddd0cd7394910405c61d7284%2F888215a5d57744558fcab774af246cff",
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "\u2018Maybe We Like a Dictator\u2019: Trump Suggests Many Americans Would Prefer Autocracy",
+        "link": "https://time.com/7312196/trump-americans-maybe-we-like-a-dictator/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Nearly 200 FEMA Employees Warn the Trump Administration Is Eroding Disaster Preparedness",
+        "link": "https://time.com/7312150/fema-trump-disaster-response-employees-katrina/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Mississippi Declares a Public Health Emergency Over Infant Deaths",
+        "link": "https://time.com/7312122/mississippi-infant-mortality-public-health-emergency/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "Time",
+        "title": "Why It\u2019s So Hard to Make School Lunches Healthier",
+        "link": "https://time.com/7311868/healthy-school-lunch/",
+        "image": null,
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Australia Accuses Iran of Directing Antisemitic Arson Attacks",
+        "link": "https://www.nytimes.com/2025/08/26/world/australia/australia-iran-antisemitic-attacks.html",
+        "image": "https://static01.nyt.com/images/2025/08/26/multimedia/26int-oz-iran-zctb/26int-oz-iran-zctb-mediumSquareAt3X.jpg",
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Can Trump Fire a Fed Governor? What to Know as He Moves to Remove Lisa Cook",
+        "link": "https://www.nytimes.com/2025/08/22/us/politics/can-trump-fire-a-fed-governor.html",
+        "image": "https://static01.nyt.com/images/2025/08/22/multimedia/22dc-fed-explain-mwpg/22dc-fed-explain-mwpg-mediumSquareAt3X.jpg",
+        "shown": true
+      },
+      {
+        "source": "NY Times",
+        "title": "Lisa Cook Broke Ground at the Fed, Before Attack by Trump",
+        "link": "https://www.nytimes.com/2025/08/23/business/lisa-cook-fed-trump.html",
+        "image": "https://static01.nyt.com/images/2025/08/23/multimedia/23biz-cook-ljbc/23biz-cook-ljbc-mediumSquareAt3X.jpg",
+        "shown": true
+      }
+    ]
   }
 ]

@@ -1,15 +1,15 @@
 [
   {
     "source": "BBC News",
-    "title": "Australia blames Iran for antisemitic attacks in Sydney and Melbourne",
-    "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
+    "title": "Nigel Farage says illegal migration is a 'scourge'",
+    "link": "https://www.bbc.com/news/articles/c5yk4r5e514o?at_medium=RSS&at_campaign=rss",
     "image": null,
     "shown": true
   },
   {
     "source": "BBC News",
-    "title": "Nigel Farage says illegal migration is a 'scourge'",
-    "link": "https://www.bbc.com/news/articles/c5yk4r5e514o?at_medium=RSS&at_campaign=rss",
+    "title": "Australia blames Iran for antisemitic attacks in Sydney and Melbourne",
+    "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
     "image": null,
     "shown": true
   },
@@ -91,52 +91,52 @@
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Trump says he'll fire Fed Reserve Governor Lisa Cook over mortgage loan allegations",
-    "link": "https://www.euronews.com/business/2025/08/26/trump-says-hell-fire-fed-reserve-governor-lisa-cook-over-mortgage-loan-allegations",
+    "source": "Time",
+    "title": "\u2018Maybe We Like a Dictator\u2019: Trump Suggests Many Americans Would Prefer Autocracy",
+    "link": "https://time.com/7312196/trump-americans-maybe-we-like-a-dictator/",
     "image": null,
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Unfair competition? Worries about European road safety after EU-US trade agreement",
-    "link": "https://www.euronews.com/my-europe/2025/08/25/unfair-competition-worries-about-european-road-safety-after-eu-us-trade-agreement",
+    "source": "Time",
+    "title": "Nearly 200 FEMA Employees Warn the Trump Administration Is Eroding Disaster Preparedness",
+    "link": "https://time.com/7312150/fema-trump-disaster-response-employees-katrina/",
     "image": null,
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Weakening Russia's war machine: Why Kyiv is targeting Moscow's energy sector",
-    "link": "https://www.euronews.com/2025/08/25/weakening-the-russian-war-machine-why-kyiv-is-targeting-moscows-energy-sector",
+    "source": "Time",
+    "title": "Mississippi Declares a Public Health Emergency Over Infant Deaths",
+    "link": "https://time.com/7312122/mississippi-infant-mortality-public-health-emergency/",
     "image": null,
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "WATCH: Hundreds join demonstration in Kenyan capital over war in Gaza",
-    "link": "https://www.euronews.com/video/2025/08/25/watch-hundreds-join-demonstration-in-kenyan-capital-over-war-in-gaza",
+    "source": "Time",
+    "title": "Why It\u2019s So Hard to Make School Lunches Healthier",
+    "link": "https://time.com/7311868/healthy-school-lunch/",
     "image": null,
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Hungary and Slovakia in spat with Ukraine over bombed Druzhba oil pipeline",
-    "link": "https://www.euronews.com/my-europe/2025/08/25/hungary-and-slovakia-in-spat-with-ukraine-over-bombed-druzhba-oil-pipeline",
-    "image": null,
+    "source": "NY Times",
+    "title": "Australia Accuses Iran of Directing Antisemitic Arson Attacks",
+    "link": "https://www.nytimes.com/2025/08/26/world/australia/australia-iran-antisemitic-attacks.html",
+    "image": "https://static01.nyt.com/images/2025/08/26/multimedia/26int-oz-iran-zctb/26int-oz-iran-zctb-mediumSquareAt3X.jpg",
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Latest Russian missile and drone attacks across Ukraine kill at least two and injure 33",
-    "link": "https://www.euronews.com/2025/08/25/at-least-two-killed-and-35-injured-in-overnight-russian-attacks-across-ukraine",
-    "image": null,
+    "source": "NY Times",
+    "title": "Can Trump Fire a Fed Governor? What to Know as He Moves to Remove Lisa Cook",
+    "link": "https://www.nytimes.com/2025/08/22/us/politics/can-trump-fire-a-fed-governor.html",
+    "image": "https://static01.nyt.com/images/2025/08/22/multimedia/22dc-fed-explain-mwpg/22dc-fed-explain-mwpg-mediumSquareAt3X.jpg",
     "shown": true
   },
   {
-    "source": "Euronews",
-    "title": "Italy\u2019s tourist resorts hit by violent storm, leaving damage",
-    "link": "https://www.euronews.com/video/2025/08/25/italys-tourist-resorts-hit-by-violent-storm-leaving-damage",
-    "image": null,
+    "source": "NY Times",
+    "title": "Lisa Cook Broke Ground at the Fed, Before Attack by Trump",
+    "link": "https://www.nytimes.com/2025/08/23/business/lisa-cook-fed-trump.html",
+    "image": "https://static01.nyt.com/images/2025/08/23/multimedia/23biz-cook-ljbc/23biz-cook-ljbc-mediumSquareAt3X.jpg",
     "shown": true
   }
 ]
