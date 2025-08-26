@@ -18,7 +18,7 @@ rss_feeds = {
     "Al Jazeera": "https://www.aljazeera.com/xml/rss/all.xml",
     "NPR News": "https://www.npr.org/rss/rss.php?id=1001",
     "ReliefWeb": "https://reliefweb.int/updates/rss.xml",
-    # Odd / Weird feeds (keywords-only)
+    # Odd / Weird feeds
     "Odd News": "https://www.odditycentral.com/feed",
     "HuffPost Weird": "https://www.huffpost.com/section/weird-news/feed",
 }
@@ -28,19 +28,17 @@ odd_feeds = {"Odd News", "HuffPost Weird"}
 bad_keywords = [
     "earthquake", "war", "killed", "crash", "explosion", "riot", "terror",
     "bomb", "injury", "injuries", "injured", "fatal", "fatality", "emergency",
-    "deadly", "attack", "violence", "warfare",
-    "abduction", "assault", "homicide", "catastrophe", "evacuation", "public harm",
-    "misinformation", "rigging", "forgery", "bribery",
-    "scam", "crash", "collision", "oil company", "oil spill", "riot police",
-    "death toll", "death", "deaths", "police clash", "fatalities", "hostage",
-    "drought", "cyclone", "famine", "arson", "assassination", "crimes", "poison",
-    "tragic", "tragedy", "explosions", "earthquakes", "shootings", "have died",
-    "has died", "been killed", "deceased", "murder", "crisis", "rescue",
+    "deadly", "attack", "violence", "warfare", "abduction", "assault", "homicide",
+    "catastrophe", "evacuation", "public harm", "misinformation", "rigging",
+    "forgery", "bribery", "scam", "collision", "oil company", "oil spill",
+    "death toll", "deaths", "police clash", "fatalities", "hostage",
+    "drought", "cyclone", "famine", "arson", "assassination", "crimes",
+    "poison", "tragic", "tragedy", "explosions", "earthquakes", "shootings",
+    "have died", "has died", "been killed", "deceased", "murder", "crisis",
     "disaster", "pandemic", "starvation", "disease", "outbreak", "terrorism",
-    "hurricane", "tornado", "felony", "fire", "evacuation", "fatal", "injured",
-    "hostage", "dictator", "abuse", "scandal", "corruption", "pollution",
-    "poverty", "fraud", "human trafficking", "racism", "unemployment",
-    "suicide", "North Korea",
+    "hurricane", "tornado", "felony", "fire", "dictator", "scandal",
+    "corruption", "pollution", "poverty", "fraud", "human trafficking", "racism",
+    "unemployment", "suicide", "North Korea",
 ]
 
 exclude_keywords = [
@@ -49,11 +47,11 @@ exclude_keywords = [
     "author", "fiction"
 ]
 
-ARCHIVE_FILE = "archive.json"
 ARTICLES_FILE = "articles.json"
+ARCHIVE_FILE = "archive.json"
 
 # -----------------------
-# Helper Functions
+# Helper functions
 # -----------------------
 def is_bad_news(title):
     title_lower = title.lower()
@@ -79,8 +77,12 @@ def get_image(entry):
             return match.group(1)
     return None
 
-def save_archive(new_articles):
-    """Append to archive.json"""
+def save_articles(final_articles):
+    # save articles.json for admin
+    with open(ARTICLES_FILE, "w") as f:
+        json.dump(final_articles, f, indent=2)
+
+    # append to archive
     try:
         with open(ARCHIVE_FILE, "r") as f:
             archive = json.load(f)
@@ -88,56 +90,18 @@ def save_archive(new_articles):
         archive = []
 
     timestamp = datetime.now().isoformat()
-    archive.append({"timestamp": timestamp, "articles": new_articles})
+    archive.append({"timestamp": timestamp, "articles": final_articles})
+
     with open(ARCHIVE_FILE, "w") as f:
         json.dump(archive, f, indent=2)
 
 # -----------------------
-# Main Routine
+# Main scraping routine
 # -----------------------
-final_articles = []
+def scrape_news():
+    final_articles = []
 
-# Step 1: Strict bad news
-for source_name, feed_url in rss_feeds.items():
-    feed = feedparser.parse(feed_url, request_headers={'User-Agent':'Mozilla/5.0'})
-    entries_sorted = sorted(
-        feed.entries,
-        key=lambda x: x.get('published_parsed', time.gmtime(0)),
-        reverse=True
-    )
-    for entry in entries_sorted:
-        if len(final_articles) >= 20:
-            break
-        title = entry.get("title","")
-        link = entry.get("link","")
-        image = get_image(entry)
-        published = entry.get("published_parsed", time.gmtime(0))
-        title_lower = title.lower()
-        polarity = TextBlob(title).sentiment.polarity
-
-        if source_name in odd_feeds:
-            if any(word in title_lower for word in bad_keywords):
-                final_articles.append({
-                    "source": source_name,
-                    "title": title,
-                    "link": link,
-                    "image": image,
-                    "polarity": polarity,
-                    "published_parsed": published
-                })
-        else:
-            if is_bad_news(title):
-                final_articles.append({
-                    "source": source_name,
-                    "title": title,
-                    "link": link,
-                    "image": image,
-                    "polarity": polarity,
-                    "published_parsed": published
-                })
-
-# Step 2: Fill with negative sentiment if <20
-if len(final_articles) < 20:
+    # Step 1: Strict bad news
     for source_name, feed_url in rss_feeds.items():
         feed = feedparser.parse(feed_url, request_headers={'User-Agent':'Mozilla/5.0'})
         entries_sorted = sorted(
@@ -150,61 +114,70 @@ if len(final_articles) < 20:
                 break
             title = entry.get("title","")
             link = entry.get("link","")
-            image = get_image(entry)
-            published = entry.get("published_parsed", time.gmtime(0))
+            image_url = get_image(entry)
             title_lower = title.lower()
             polarity = TextBlob(title).sentiment.polarity
-            if polarity < 0 and not any(word in title_lower for word in exclude_keywords):
-                if not any(a["title"] == title for a in final_articles):
-                    final_articles.append({
-                        "source": source_name,
-                        "title": title,
-                        "link": link,
-                        "image": image,
-                        "polarity": polarity,
-                        "published_parsed": published
-                    })
 
-# Step 3: Fill with odd feeds if still <20
-if len(final_articles) < 20:
-    for source_name in odd_feeds:
-        feed_url = rss_feeds.get(source_name)
-        feed = feedparser.parse(feed_url, request_headers={'User-Agent':'Mozilla/5.0'})
-        entries_sorted = sorted(
-            feed.entries,
-            key=lambda x: x.get('published_parsed', time.gmtime(0)),
-            reverse=True
-        )
-        for entry in entries_sorted:
-            if len(final_articles) >= 20:
-                break
-            title = entry.get("title","")
-            link = entry.get("link","")
-            image = get_image(entry)
-            if not any(a["title"] == title for a in final_articles):
-                final_articles.append({
-                    "source": source_name,
-                    "title": title,
-                    "link": link,
-                    "image": image,
-                    "polarity": 0,
-                    "published_parsed": entry.get("published_parsed", time.gmtime(0))
-                })
+            if source_name in odd_feeds:
+                if any(word in title_lower for word in bad_keywords):
+                    final_articles.append({"source":source_name,"title":title,"link":link,"image":image_url,"shown":True})
+            else:
+                if is_bad_news(title):
+                    final_articles.append({"source":source_name,"title":title,"link":link,"image":image_url,"shown":True})
 
-# Step 4: Sort final 20 by newest published
-final_articles_sorted = sorted(final_articles, key=lambda x: x.get("published_parsed", time.gmtime(0)), reverse=True)[:20]
+    # Step 2: Fill with negative polarity if <20
+    if len(final_articles) < 20:
+        for source_name, feed_url in rss_feeds.items():
+            feed = feedparser.parse(feed_url, request_headers={'User-Agent':'Mozilla/5.0'})
+            entries_sorted = sorted(
+                feed.entries,
+                key=lambda x: x.get('published_parsed', time.gmtime(0)),
+                reverse=True
+            )
+            for entry in entries_sorted:
+                if len(final_articles) >= 20:
+                    break
+                title = entry.get("title","")
+                link = entry.get("link","")
+                image_url = get_image(entry)
+                title_lower = title.lower()
+                polarity = TextBlob(title).sentiment.polarity
 
-# Step 5: Save current articles
-with open(ARTICLES_FILE, "w") as f:
-    json.dump(final_articles_sorted, f, indent=2)
+                if polarity < 0 and not any(word in title_lower for word in exclude_keywords):
+                    if not any(a["title"]==title for a in final_articles):
+                        final_articles.append({"source":source_name,"title":title,"link":link,"image":image_url,"shown":True})
 
-# Step 6: Append to archive
-save_archive(final_articles_sorted)
+    # Step 3: Fill remaining with odd feeds
+    if len(final_articles) < 20:
+        for source_name in odd_feeds:
+            feed_url = rss_feeds.get(source_name)
+            feed = feedparser.parse(feed_url, request_headers={'User-Agent':'Mozilla/5.0'})
+            entries_sorted = sorted(
+                feed.entries,
+                key=lambda x: x.get('published_parsed', time.gmtime(0)),
+                reverse=True
+            )
+            for entry in entries_sorted:
+                if len(final_articles) >= 20:
+                    break
+                title = entry.get("title","")
+                link = entry.get("link","")
+                image_url = get_image(entry)
+                if not any(a["title"]==title for a in final_articles):
+                    final_articles.append({"source":source_name,"title":title,"link":link,"image":image_url,"shown":True})
 
-# Optional: Print to console
-for art in final_articles_sorted:
-    print(f"{art['source']}: {art['title']}")
-    print(f"Link: {art['link']}")
-    if art["image"]:
-        print(f"Image: {art['image']}")
-    print()
+    # Step 4: Sort final articles by newest published date (if available)
+    final_articles_sorted = sorted(
+        final_articles,
+        key=lambda x: x.get('published_parsed', time.gmtime(0)) if 'published_parsed' in x else time.gmtime(0),
+        reverse=True
+    )
+
+    # Step 5: Take exactly 20
+    final_articles_sorted = final_articles_sorted[:20]
+
+    save_articles(final_articles_sorted)
+    print(f"Saved {len(final_articles_sorted)} articles to {ARTICLES_FILE} and archived in {ARCHIVE_FILE}.")
+
+if __name__ == "__main__":
+    scrape_news()
