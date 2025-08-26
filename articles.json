@@ -1,15 +1,15 @@
 [
   {
     "source": "BBC News",
-    "title": "Nigel Farage says illegal migration is a 'scourge'",
-    "link": "https://www.bbc.com/news/articles/c5yk4r5e514o?at_medium=RSS&at_campaign=rss",
+    "title": "Australia accuses Iran of directing antisemitic attacks on cafe and synagogue",
+    "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
     "image": null,
     "shown": true
   },
   {
     "source": "BBC News",
-    "title": "Australia blames Iran for antisemitic attacks in Sydney and Melbourne",
-    "link": "https://www.bbc.com/news/articles/c9d085n75q3o?at_medium=RSS&at_campaign=rss",
+    "title": "Nigel Farage says illegal migration is a 'scourge'",
+    "link": "https://www.bbc.com/news/articles/c5yk4r5e514o?at_medium=RSS&at_campaign=rss",
     "image": null,
     "shown": true
   },
@@ -36,13 +36,6 @@
   },
   {
     "source": "BBC News",
-    "title": "'How will I pay workers?': Indian factories hit hard by Trump's 50% tariffs",
-    "link": "https://www.bbc.com/news/articles/c98lr56mznjo?at_medium=RSS&at_campaign=rss",
-    "image": null,
-    "shown": true
-  },
-  {
-    "source": "BBC News",
     "title": "Less serious violence at Notting Hill Carnival this year, say police",
     "link": "https://www.bbc.com/news/articles/cpdj7lnx40xo?at_medium=RSS&at_campaign=rss",
     "image": null,
@@ -60,6 +53,13 @@
     "title": "Is Donald Trump losing his Latino base?",
     "link": "https://www.bbc.co.uk/sounds/play/w3ct7t5t?at_medium=RSS&at_campaign=rss",
     "image": null,
+    "shown": true
+  },
+  {
+    "source": "AP News",
+    "title": "Australia accuses Iran of organizing antisemitic attacks and expels ambassador",
+    "link": "https://apnews.com/article/australia-iran-antisemitism-attacks-fad2dc76125807a643bfe14cae33d2c8",
+    "image": "https://dims.apnews.com/dims4/default/cfcc720/2147483647/strip/true/crop/5823x3275+0+303/resize/1440x810!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F14%2Fa7%2Fd96ba7a38a21e7395b8999f8883f%2Fdad3d2a0067942e1a8b31a1c7ebee1c3",
     "shown": true
   },
   {
@@ -99,7 +99,7 @@
   },
   {
     "source": "Euronews",
-    "title": "Trump says he'll fire Fed Reserve Governor Lisa Cook over mortgage loan allegations",
+    "title": "Trump removes Fed Governor Lisa Cook over mortgage fraud dispute",
     "link": "https://www.euronews.com/business/2025/08/26/trump-says-hell-fire-fed-reserve-governor-lisa-cook-over-mortgage-loan-allegations",
     "image": null,
     "shown": true
@@ -120,6 +120,13 @@
   },
   {
     "source": "Euronews",
+    "title": "SpaceX Starship rocket launch delayed again due to bad weather",
+    "link": "https://www.euronews.com/next/2025/08/25/spacex-to-launch-starship-rocket-in-test-for-elon-musks-moon-and-mars-ambitions",
+    "image": null,
+    "shown": true
+  },
+  {
+    "source": "Euronews",
     "title": "WATCH: Hundreds join demonstration in Kenyan capital over war in Gaza",
     "link": "https://www.euronews.com/video/2025/08/25/watch-hundreds-join-demonstration-in-kenyan-capital-over-war-in-gaza",
     "image": null,
@@ -129,13 +136,6 @@
     "source": "Euronews",
     "title": "Hungary and Slovakia in spat with Ukraine over bombed Druzhba oil pipeline",
     "link": "https://www.euronews.com/my-europe/2025/08/25/hungary-and-slovakia-in-spat-with-ukraine-over-bombed-druzhba-oil-pipeline",
-    "image": null,
-    "shown": true
-  },
-  {
-    "source": "Euronews",
-    "title": "Latest Russian missile and drone attacks across Ukraine kill at least two and injure 33",
-    "link": "https://www.euronews.com/2025/08/25/at-least-two-killed-and-35-injured-in-overnight-russian-attacks-across-ukraine",
     "image": null,
     "shown": true
   }
