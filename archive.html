@@ -80,9 +80,7 @@
         snapshots.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
         snapshots.forEach(snapshot => {
-          const dateHeader = document.createElement("h2");
-          dateHeader.textContent = "Snapshot: " + new Date(snapshot.timestamp).toLocaleString();
-          container.appendChild(dateHeader);
+          
 
           const approved = snapshot.articles.filter(a => a.shown);
           if (approved.length === 0) {
