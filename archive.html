@@ -5,18 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tough News Archive</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; }
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+      max-width: 1000px; 
+      margin: auto; 
+    }
+
     h1 { text-align: center; }
-    h2 { margin-top: 30px; border-bottom: 2px solid #333; padding-bottom: 5px; }
-    .article { border-bottom: 1px solid #ddd; padding: 10px 0; }
-    .article:last-child { border-bottom: none; }
-    .title { font-size: 18px; font-weight: bold; }
-    .link { color: #0073e6; text-decoration: none; }
-    .link:hover { text-decoration: underline; }
-    .timestamp { font-size: 12px; color: #555; }
+
     nav { margin: 20px 0; text-align: center; }
     nav a { margin: 0 10px; text-decoration: none; color: #333; }
-    img { max-width: 100%; height: auto; margin: 5px 0; }
+
+    h2 { 
+      margin-top: 30px; 
+      border-bottom: 2px solid #333; 
+      padding-bottom: 5px; 
+    }
+
+    #archive {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .article {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .article img {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+    .link { color: #0073e6; text-decoration: none; margin-bottom: 5px; }
+    .link:hover { text-decoration: underline; }
+    .timestamp { font-size: 12px; color: #555; }
   </style>
 </head>
 <body>
@@ -40,22 +72,19 @@
 
         let snapshots = [];
         if (Array.isArray(allArticles) && allArticles.length > 0 && allArticles[0].articles) {
-          // Proper snapshots format
           snapshots = allArticles;
         } else {
-          // Flat articles fallback (no snapshots)
           snapshots = [{ timestamp: new Date().toISOString(), articles: allArticles }];
         }
 
-        // Sort snapshots newest to oldest
-        snapshots.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+        snapshots.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
         snapshots.forEach(snapshot => {
           const dateHeader = document.createElement("h2");
           dateHeader.textContent = "Snapshot: " + new Date(snapshot.timestamp).toLocaleString();
           container.appendChild(dateHeader);
 
-          let approved = snapshot.articles.filter(a => a.shown);
+          const approved = snapshot.articles.filter(a => a.shown);
           if (approved.length === 0) {
             const p = document.createElement("p");
             p.textContent = "No approved articles in this snapshot.";
@@ -68,15 +97,15 @@
             div.className = "article";
             div.innerHTML = `
               <div class="title">${article.title}</div>
-              ${article.image ? `<img src="${article.image}" max-width="150px" alt="Article image">` : ""}
-              <a class="link" href="${article.link}" target="_blank">Read Article</a>
+              ${article.image ? `<img src="${article.image}" alt="Article image">` : ""}
+              ${article.link ? `<a class="link" href="${article.link}" target="_blank">Read Article</a>` : ""}
               <div class="timestamp">${new Date(snapshot.timestamp).toLocaleString()}</div>
             `;
             container.appendChild(div);
           });
         });
 
-      } catch(err) {
+      } catch (err) {
         console.error(err);
         document.getElementById("archive").innerHTML = "<p>Error loading archive.</p>";
       }
