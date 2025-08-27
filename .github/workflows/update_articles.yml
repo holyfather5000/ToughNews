@@ -23,17 +23,46 @@ jobs:
       - name: Run ToughNews
         run: python ToughNews.py
 
-      - name: Force shown=false for all new articles
+      - name: Force shown=false for only new articles
         run: |
           python - <<'PYCODE'
-          import json, pathlib
+          import json, pathlib, hashlib
+
           path = pathlib.Path("archive.json")
-          if path.exists():
-              data = json.loads(path.read_text(encoding="utf-8"))
-              for a in data:
+          if not path.exists():
+              raise SystemExit("archive.json not found")
+
+          # Load current archive
+          current = json.loads(path.read_text(encoding="utf-8"))
+
+          # Use a unique key to track articles (title+link hash for safety)
+          def key(article):
+              return hashlib.sha1((article.get("title","") + article.get("link","")).encode()).hexdigest()
+
+          # Load previous version from git (before ToughNews.py ran)
+          import subprocess
+          try:
+              prev_text = subprocess.check_output(["git", "show", "HEAD:archive.json"]).decode()
+              prev = json.loads(prev_text)
+          except Exception:
+              prev = []
+
+          prev_map = {key(a): a for a in prev}
+          updated = []
+
+          for a in current:
+              k = key(a)
+              if k in prev_map:
+                  # Keep whatever "shown" was already
+                  a["shown"] = prev_map[k].get("shown", False)
+              else:
+                  # New article → force false
                   a["shown"] = False
-              path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+              updated.append(a)
+
+          path.write_text(json.dumps(updated, indent=2, ensure_ascii=False), encoding="utf-8")
           PYCODE
+
 
       - name: Commit changes
         run: |
