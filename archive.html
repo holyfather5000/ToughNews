@@ -68,9 +68,9 @@
             div.className = "article";
             div.innerHTML = `
               <div class="title">${article.title}</div>
-              ${article.image ? `<img src="${article.image}" alt="Article image">` : ""}
+              ${article.image ? `<img src="${article.image}" max-width="150px" alt="Article image">` : ""}
               <a class="link" href="${article.link}" target="_blank">Read Article</a>
-              <div class="timestamp">Snapshot saved: ${new Date(snapshot.timestamp).toLocaleString()}</div>
+              <div class="timestamp">${new Date(snapshot.timestamp).toLocaleString()}</div>
             `;
             container.appendChild(div);
           });
