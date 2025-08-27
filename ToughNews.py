@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 import feedparser
 
-ARTICLES_FILE = "articles.json"
+ARTICLES_FILE = "archive.json"
 
 # List of RSS feeds
 FEEDS = [
@@ -30,7 +30,7 @@ def load_existing_articles():
             try:
                 return json.load(f)
             except json.JSONDecodeError:
-                print("⚠️ Warning: articles.json was corrupted. Starting fresh.")
+                print("⚠️ Warning: archive.json was corrupted. Starting fresh.")
                 return []
     return []
 
