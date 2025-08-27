@@ -1,73 +1,82 @@
-name: ToughNews
+name: Fetch News Articles
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour
+    - cron: "0 * * * *" # runs hourly
   workflow_dispatch:
 
 jobs:
-  build:
+  fetch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install deps
+        run: pip install feedparser
 
-      - name: Run ToughNews
-        run: python ToughNews.py
-
-      - name: Force shown=false for only new articles
+      - name: Fetch RSS
         run: |
-          python - <<'PYCODE'
-          import json, pathlib, hashlib
+          import json, os, feedparser, re, hashlib
 
-          path = pathlib.Path("archive.json")
-          if not path.exists():
-              raise SystemExit("archive.json not found")
+          FEEDS = [
+                  "https://feeds.bbci.co.uk/news/rss.xml",
+                  "https://feedx.net/rss/ap.xml",
+                  "https://www.euronews.com/rss",
+                  "https://time.com/feed/",
+                  "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+                  "https://www.cbc.ca/webfeed/rss/rss-topstories",
+                  "https://globalnews.ca/feed/",
+                  "https://www.aljazeera.com/xml/rss/all.xml",
+                  "https://www.npr.org/rss/rss.php?id=1001",
+                  "https://reliefweb.int/updates/rss.xml",
+                  "https://www.odditycentral.com/feed",
+                  "https://www.huffpost.com/section/weird-news/feed",
+          ]
+          KEYWORDS = ["murder", "death", "killed", "deceased", "hurricane", "earthquake", "tornado", "disaster", "crash", "attack", "war", "conflict", "explosion", "fire", "flood", "eruption", "tsunami", "pandemic", "outbreak", "epidemic", "disease", "injured", "hostage", "abducted", "assault", "robbery", "theft", "fraud", "scandal", "corruption", "bribery", "embezzlement", "extortion", "blackmail", "cyberattack", "hacking", "data breach", "espionage", "terrorism", "bombing", "guns", "massacre", "firearm", "shooting", "assassination", "disease", "depression", "death toll", "fatalities", "casualties", "evacuation", "crisis", "emergency", "aid", "victim"]
 
-          # Load current archive
-          current = json.loads(path.read_text(encoding="utf-8"))
+          articles_path = "articles.json"
 
-          # Use a unique key to track articles (title+link hash for safety)
-          def key(article):
-              return hashlib.sha1((article.get("title","") + article.get("link","")).encode()).hexdigest()
+          # Load existing articles
+          if os.path.exists(articles_path):
+              with open(articles_path, "r") as f:
+                  try:
+                      articles = json.load(f)
+                  except:
+                      articles = []
+          else:
+              articles = []
 
-          # Load previous version from git (before ToughNews.py ran)
-          import subprocess
-          try:
-              prev_text = subprocess.check_output(["git", "show", "HEAD:archive.json"]).decode()
-              prev = json.loads(prev_text)
-          except Exception:
-              prev = []
+          existing_links = {a["link"] for a in articles}
 
-          prev_map = {key(a): a for a in prev}
-          updated = []
+          new_articles = []
+          for url in FEEDS:
+              feed = feedparser.parse(url)
+              for entry in feed.entries:
+                  text = (entry.title + " " + getattr(entry, "summary", "")).lower()
+                  if any(kw.lower() in text for kw in KEYWORDS):
+                      if entry.link not in existing_links:
+                          new_articles.append({
+                              "title": entry.title,
+                              "link": entry.link,
+                              "shown": False
+                          })
 
-          for a in current:
-              k = key(a)
-              if k in prev_map:
-                  # Keep whatever "shown" was already
-                  a["shown"] = prev_map[k].get("shown", False)
-              else:
-                  # New article → force false
-                  a["shown"] = False
-              updated.append(a)
-
-          path.write_text(json.dumps(updated, indent=2, ensure_ascii=False), encoding="utf-8")
-          PYCODE
-
+          # Append new ones
+          if new_articles:
+              articles.extend(new_articles)
+              with open(articles_path, "w") as f:
+                  json.dump(articles, f, indent=2)
 
       - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add archive.json
-          git commit -m "Update archive.json with new articles" || echo "No changes"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add articles.json
+          git commit -m "Update articles.json" || echo "No changes"
           git push
