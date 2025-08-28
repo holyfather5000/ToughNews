@@ -7,25 +7,17 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
     h1 { text-align: center; }
-    .article { border-bottom: 1px solid #ddd; padding: 15px 0; }
+    .article { border-bottom: 1px solid #ddd; padding: 10px 0; }
     .article:last-child { border-bottom: none; }
-    .title { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
-    .timestamp { font-size: 12px; color: #555; margin-top: 5px; }
+    .title { font-size: 18px; font-weight: bold; display: block; margin-bottom: 5px; }
+    .link { color: #0073e6; text-decoration: none; }
+    .link:hover { text-decoration: underline; }
+    .timestamp { font-size: 12px; color: #555; margin-top: 5px; display: block; }
     nav { margin: 20px 0; text-align: center; }
     nav a { margin: 0 10px; text-decoration: none; color: #333; }
-    nav a:hover { text-decoration: underline; }
-    img { max-width: 100%; height: auto; margin: 10px 0; display: block; }
-    .open-btn { 
-      display: inline-block; 
-      margin-top: 8px; 
-      padding: 6px 12px; 
-      background: #0073e6; 
-      color: #fff; 
-      border-radius: 4px; 
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .open-btn:hover { background: #005bb5; }
+    img { max-width: 450px; height: auto; margin: 5px 0; display: block; }
+    .open-article { color: #0073e6; text-decoration: none; display: inline-block; margin-top: 5px; }
+    .open-article:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -39,27 +31,28 @@
 
   <div id="feed"></div>
 
-  <script>
-    fetch('articles.json')
-      .then(res => res.json())
-      .then(data => {
-        const shown = data.filter(a => a.shown).slice(0, 30); // show only 30
-        const container = document.getElementById('feed');
+<script>
+  fetch('articles.json')
+    .then(res => res.json())
+    .then(data => {
+      const shown = data.filter(a => a.shown).slice(0, 30); // limit to 30 articles
+      const container = document.getElementById('feed');
 
-        shown.forEach(a => {
-          const div = document.createElement('div');
-          div.className = 'article';
+      shown.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'article';
 
-          div.innerHTML = `
-            <div class="title">${a.title}</div>
-            ${a.image ? `<a href="${a.link}" target="_blank"><img src="${a.image}" alt="Article image"></a>` : ""}
-            <a href="${a.link}" target="_blank" class="open-btn">Open article</a>
-            <div class="timestamp">${a.date || ''}</div>
-          `;
-          container.appendChild(div);
-        });
+        div.innerHTML = `
+          <span class="title">${a.title}</span>
+          ${a.image ? `<a href="${a.link}" target="_blank"><img src="${a.image}" alt="${a.title}"></a>` : ''}
+          <a class="open-article" href="${a.link}" target="_blank">Open article</a>
+          <span class="timestamp">${new Date(a.date).toLocaleDateString()}</span>
+        `;
+
+        container.appendChild(div);
       });
-  </script>
+    });
+</script>
 
 </body>
 </html>
